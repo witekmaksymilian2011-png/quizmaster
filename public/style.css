@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>QuizMaster</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f9fc;
+      color: #172033;
+      min-height: 100vh;
+    }
+
+    .header {
+      height: 72px;
+      background: white;
+      border-bottom: 1px solid #e8edf3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 21px;
+      font-weight: 800;
+      color: #2563eb;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: #2563eb;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .teacher {
+      background: #eef4ff;
+      border: 0;
+      color: #2563eb;
+      font-weight: 700;
+      padding: 11px 17px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .main {
+      width: min(1100px, calc(100% - 32px));
+      margin: auto;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 70px 15px 35px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 8px 15px;
+      border-radius: 999px;
+      background: #eaf2ff;
+      color: #2563eb;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 7vw, 64px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: #2563eb;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: auto;
+      color: #667085;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .card {
+      max-width: 500px;
+      margin: 20px auto 60px;
+      background: white;
+      border: 1px solid #e5eaf1;
+      border-radius: 22px;
+      padding: 32px;
+      box-shadow: 0 15px 45px rgba(31, 52, 82, 0.08);
+    }
+
+    .card h2 {
+      font-size: 25px;
+      margin-bottom: 8px;
+    }
+
+    .card-description {
+      color: #667085;
+      line-height: 1.5;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin: 16px 0 8px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #d8dee8;
+      border-radius: 12px;
+      background: #fbfcfe;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus {
+      background: white;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    }
+
+    .join {
+      width: 100%;
+      border: 0;
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 20px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .join:hover {
+      background: #1d4ed8;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 70px;
+    }
+
+    .feature {
+      background: white;
+      border: 1px solid #e5eaf1;
+      border-radius: 18px;
+      padding: 25px;
+    }
+
+    .icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 12px;
+      background: #eef4ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 21px;
+      margin-bottom: 15px;
+    }
+
+    .feature h3 {
+      margin-bottom: 8px;
+    }
+
+    .feature p {
+      color: #667085;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .info {
+      text-align: center;
+      color: #98a2b3;
+      font-size: 14px;
+      padding-bottom: 35px;
+    }
+
+    .error {
+      display: none;
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 10px;
+      background: #fff1f2;
+      color: #be123c;
+      font-size: 14px;
+    }
+
+    @media (max-width: 700px) {
+
+      .header {
+        height: 64px;
+        padding: 0 16px;
+      }
+
+      .brand {
+        font-size: 18px;
+      }
+
+      .brand-icon {
+        width: 36px;
+        height: 36px;
+      }
+
+      .teacher {
+        padding: 9px 12px;
+        font-size: 13px;
+      }
+
+      .hero {
+        padding-top: 45px;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+        letter-spacing: -1px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .card {
+        padding: 23px;
+        border-radius: 18px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 400px) {
+
+      .main {
+        width: calc(100% - 20px);
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .card {
+        padding: 19px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+
+    <div class="brand">
+      <div class="brand-icon">Q</div>
+      QuizMaster
+    </div>
+
+    <button class="teacher" onclick="teacherLogin()">
+      Panel nauczyciela
+    </button>
+
+  </header>
+
+
+  <main class="main">
+
+    <section class="hero">
+
+      <div class="tag">
+        Idealne dla szkół
+      </div>
+
+      <h1>
+        Twórz quizy.<br>
+        <span>Sprawdzaj wiedzę.</span>
+      </h1>
+
+      <p>
+        Proste i wygodne quizy dla uczniów.
+        Nauczyciel udostępnia kod, uczniowie
+        dołączają ze swoich telefonów,
+        a wyniki zapisują się automatycznie.
+      </p>
+
+    </section>
+
+
+    <section class="card">
+
+      <h2>Dołącz do quizu</h2>
+
+      <p class="card-description">
+        Otrzymałeś kod od nauczyciela?
+        Wpisz go poniżej, aby rozpocząć.
+      </p>
+
+      <label for="code">Kod quizu</label>
+
+      <input
+        id="code"
+        type="text"
+        placeholder="np. ABC123"
+        maxlength="10"
+        autocomplete="off"
+      >
+
+      <label for="name">Imię i nazwisko</label>
+
+      <input
+        id="name"
+        type="text"
+        placeholder="np. Jan Kowalski"
+        maxlength="60"
+        autocomplete="name"
+      >
+
+      <button class="join" onclick="joinQuiz()">
+        Rozpocznij quiz →
+      </button>
+
+      <div class="error" id="error"></div>
+
+    </section>
+
+
+    <section class="features">
+
+      <div class="feature">
+
+        <div class="icon">📱</div>
+
+        <h3>Wygodnie na telefonie</h3>
+
+        <p>
+          Uczniowie mogą korzystać z telefonu,
+          tabletu albo komputera.
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="icon">⏱️</div>
+
+        <h3>Limit czasu</h3>
+
+        <p>
+          Nauczyciel może ustawić czas
+          na pytanie lub cały quiz.
+        </p>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="icon">📊</div>
+
+        <h3>Wyniki automatycznie</h3>
+
+        <p>
+          Wyniki uczniów są zapisywane,
+          dzięki czemu nic nie powinno zginąć.
+        </p>
+
+      </div>
+
+    </section>
+
+    <div class="info">
+      QuizMaster · Nowoczesne quizy dla szkół
+    </div>
+
+  </main>
+
+
+  <script>
+
+    function joinQuiz() {
+
+      const code =
+        document.getElementById("code").value.trim();
+
+      const name =
+        document.getElementById("name").value.trim();
+
+      const error =
+        document.getElementById("error");
+
+
+      if (!code || !name) {
+
+        error.style.display = "block";
+
+        error.textContent =
+          "Wpisz kod quizu oraz swoje imię i nazwisko.";
+
+        return;
+      }
+
+
+      error.style.display = "block";
+
+      error.style.background = "#ecfdf3";
+
+      error.style.color = "#047857";
+
+      error.textContent =
+        "Dane są poprawne. Funkcja dołączania zostanie połączona z serwerem w następnym kroku.";
+
+    }
+
+
+    function teacherLogin() {
+
+      alert(
+        "Panel nauczyciela podłączymy w następnym kroku."
+      );
+
+    }
+
+  </script>
+
+</body>
+</html>
