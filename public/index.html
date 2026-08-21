@@ -287,9 +287,47 @@
       QuizMaster
     </div>
 
-    <button class="teacher-button" onclick="teacherLogin()">
-      Panel nauczyciela
+<button class="teacher" onclick="teacherLogin()">
+  Panel nauczyciela
+</button>
+
+<div id="teacherPanel" class="teacher-panel">
+
+  <div class="teacher-top">
+    <div>
+      <span class="panel-tag">QUIZMASTER</span>
+      <h2>Panel nauczyciela</h2>
+      <p>Twórz quizy, zarządzaj pytaniami i sprawdzaj wyniki.</p>
+    </div>
+
+    <button class="close-panel" onclick="closeTeacherPanel()">×</button>
+  </div>
+
+  <div class="teacher-cards">
+
+    <button class="teacher-card" onclick="createQuiz()">
+      <div class="teacher-icon">＋</div>
+      <h3>Utwórz quiz</h3>
+      <p>Stwórz nowy quiz i dodaj pytania.</p>
     </button>
+
+    <button class="teacher-card" onclick="showQuizzes()">
+      <div class="teacher-icon">📚</div>
+      <h3>Moje quizy</h3>
+      <p>Przeglądaj i edytuj swoje quizy.</p>
+    </button>
+
+    <button class="teacher-card" onclick="showResults()">
+      <div class="teacher-icon">📊</div>
+      <h3>Wyniki</h3>
+      <p>Sprawdź wyniki swoich uczniów.</p>
+    </button>
+
+  </div>
+
+  <div id="teacherMessage" class="teacher-message"></div>
+
+</div>
   </header>
 
   <main class="container">
